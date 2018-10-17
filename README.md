@@ -1,26 +1,17 @@
-Flask Demo App
-==============
+#Flask Demo App
 
-Installing
-----------
+##Installing
+Install using [pipenv](https://github.com/pypa/pipenv):
 
-Install using `pipenv`_:
+```shell
+pipenv install
+pipenv shell
+```
 
-.. code-block:: text
+##Running the App
 
-    pipenv install
-    pipenv shell
-
-Running the App
----------------
-
-.. code-block:: text
-
-    export FLASK_APP=index.py
-    export FLASK_DEBUG=1
-    flask run
-
-Links
------
-
-.. _pipenv: https://github.com/pypa/pipenv
+```shell
+export FLASK_APP=index.py
+export FLASK_DEBUG=1
+flask run
+```
