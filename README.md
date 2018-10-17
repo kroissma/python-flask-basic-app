@@ -11,7 +11,6 @@ Install using `pipenv`_:
     pipenv install
     pipenv shell
 
-
 Running the App
 ---------------
 
@@ -19,5 +18,8 @@ Running the App
     export FLASK_APP=index.py
     export FLASK_DEBUG=1
     flask run
+
+Links
+-----
 
 .. _pipenv: https://github.com/pypa/pipenv
