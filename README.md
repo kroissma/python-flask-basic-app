@@ -15,3 +15,6 @@ export FLASK_APP=index.py
 export FLASK_DEBUG=1
 flask run
 ```
+
+The server will run on http://127.0.0.1:5000.
+The debug flag forces the server to restart after files changed.
