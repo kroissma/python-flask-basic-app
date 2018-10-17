@@ -1,6 +1,6 @@
-#Flask Demo App
+# Flask Demo App
 
-##Installing
+## Installing
 Install using [pipenv](https://github.com/pypa/pipenv):
 
 ```shell
@@ -8,7 +8,7 @@ pipenv install
 pipenv shell
 ```
 
-##Running the App
+## Running the App
 
 ```shell
 export FLASK_APP=index.py
