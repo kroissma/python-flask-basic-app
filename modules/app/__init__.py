@@ -1,8 +1,9 @@
 import json
 import datetime
 from flask import Flask
+# noinspection PyPackageRequirements
 from bson.objectid import ObjectId
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from flask_pymongo import PyMongo
 import configparser
 from flask_jwt_extended import JWTManager
@@ -35,4 +36,5 @@ app.json_encoder = JSONEncoder
 
 CORS(app)
 
+# noinspection PyPep8
 from app.controllers import *

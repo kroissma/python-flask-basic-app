@@ -10,11 +10,14 @@ sys.path.append(os.path.join(ROOT_PATH, 'modules'))
 config = configparser.ConfigParser()
 config.read('config.ini')
 
+# noinspection PyPep8
 import logger
+# noinspection PyPep8
 from app import app
 
 LOG = logger.get_root_logger(os.environ.get(
     'ROOT_LOGGER', 'root'), filename=os.path.join(ROOT_PATH, config['LOGGING']['FILENAME']))
+
 
 @app.errorhandler(404)
 def not_found(error):

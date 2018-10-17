@@ -4,8 +4,9 @@ import configparser
 config = configparser.ConfigParser()
 config.read('config.ini')
 
+
 def get_root_logger(logger_name, filename=None):
-    ''' get the logger object '''
+    # get the logger object
     logger = logging.getLogger(logger_name)
     debug = config['LOGGING']['level'] == 'development'
     logger.setLevel(logging.DEBUG if debug else logging.INFO)

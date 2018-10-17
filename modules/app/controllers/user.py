@@ -1,4 +1,4 @@
-''' controller and routes for users '''
+# controller and routes for users
 import os
 from flask import request, jsonify
 from app import app, mongo, flask_bcrypt, jwt
@@ -19,8 +19,9 @@ LOG = logger.get_root_logger(
 @app.route('/user', methods=['GET', 'DELETE'])
 @jwt_required
 def user():
-    if request.method == 'GET': #TODO: return all users if there was no argument specified
-        #TODO: check if email address was provided in the query args
+    if request.method == 'GET':
+        # TODO: return all users if there was no argument specified
+        # TODO: check if email address was provided in the query args
         query = request.args
         data = mongo.db.users.find_one(query)
         del data['password']
@@ -50,22 +51,24 @@ def register():
     else:
         return jsonify({'ok': False, 'message': 'Bad request parameters: {}'.format(data['message'])}), 400
 
+
 @app.route('/login', methods=['POST'])
 def auth_user():
     # auth endpoint
     data = validate_user(request.get_json())
     if data['ok']:
         data = data['data']
-        user = mongo.db.users.find_one({'email': data['email']})
-        if user and flask_bcrypt.check_password_hash(user['password'], data['password']):
-            del user['password']
-            user['token'] = create_access_token(identity=data)
-            user['refresh'] = create_refresh_token(identity=data)
-            return jsonify({'ok': True, 'data': user}), 200
+        found_user = mongo.db.users.find_one({'email': data['email']})
+        if found_user and flask_bcrypt.check_password_hash(found_user['password'], data['password']):
+            del found_user['password']
+            found_user['token'] = create_access_token(identity=data)
+            found_user['refresh'] = create_refresh_token(identity=data)
+            return jsonify({'ok': True, 'data': found_user}), 200
         else:
             return jsonify({'ok': False, 'message': 'invalid username or password'}), 401
     else:
         return jsonify({'ok': False, 'message': 'Bad request parameters: {}'.format(data['message'])}), 400
+
 
 @app.route('/refresh', methods=['POST'])
 @jwt_refresh_token_required
@@ -73,13 +76,14 @@ def refresh():
     # refresh token endpoint
     current_user = get_jwt_identity()
     ret = {
-            'token': create_access_token(identity=current_user),
-            'refresh': create_refresh_token(identity=current_user)
-        }
+        'token': create_access_token(identity=current_user),
+        'refresh': create_refresh_token(identity=current_user)
+    }
     return jsonify({'ok': True, 'data': ret}), 200
 
+
 @jwt.unauthorized_loader
-def unauthorized_response(callback):
+def unauthorized_response():
     return jsonify({
         'ok': False,
         'message': 'Missing Authorization Header'
