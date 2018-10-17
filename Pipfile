@@ -12,5 +12,9 @@ flask-jsonpify = "*"
 flask-sqlalchemy = "*"
 flask-restful = "*"
 flask-cors = "*"
+flask-pymongo = "*"
+flask-jwt-extended = "*"
+flask-bcrypt = "*"
+jsonschema = "*"
 
 [dev-packages]
